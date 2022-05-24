@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?>
+
+<kickstart>
+
+	<description>
+	The hadoop-bigtop roll: installation of hadoop packages on nodes.
+	</description>
+
+	<copyright>
+	Copyright (c) 2022 J. E. Ramirez
+	</copyright>
+
+	<changelog>
+	$Log: bigtop-hadoop-install.xml,v $
+	Revision 0.1  2022/05/24 10:34:53  eduardo initial revision
+	</changelog>
+
+<package>libxml2.&arch;</package>
+<package>yum-cron</package>
+<package>yum-priorities</package>
+
+<post>
+<eval mode="xml">
+/opt/rocks/bin/rocks report host bigtop hadoop install  &hostname;
+</eval>
+
+</post>
+
+</kickstart>
