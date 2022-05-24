@@ -1,0 +1,49 @@
+<?xml version="1.0" standalone="no"?>
+
+<kickstart >
+
+	<description>
+	The hadoop-bigtop roll: configuration of hadoop on nodes.	
+	</description>
+
+	<copyright>
+	Copyright (c) 2022 J. E. Ramirez
+	</copyright>
+
+	<changelog>
+	$Log: bigtop-hadoop-configuration.xml,v $
+	Revision 0.1  2022/05/24 10:34:53  eduardo initial revision
+	</changelog>
+
+[ -f /etc/sysconfig/hadoop ]&amp;&amp; cp -p /etc/sysconfig/hadoop /etc/sysconfig/hadoop.save_original_install
+<eval mode="xml">
+/opt/rocks/bin/rocks report host bigtop hadoop config  &hostname;
+</eval>
+
+<!-- add configuration hadoop secondary when public interface is set default 
+     but hadoop is set in a private network (for example a  login node) -->
+<file name="/root/tweak_hadoop_secondary.sh" perms="0750" >
+#!/bin/sh
+
+if [ "&primary_net;" == "public" ]&amp;&amp;[ "&hostname;" == "&BIGTOP_HadoopSecondaryNameNode;" ]; then
+[ ! -f /etc/hadoop/conf/hdfs-site.xml.template_original_install ]||cp -p /etc/hadoop/conf/hdfs-site.xml.template /etc/hadoop/conf/hdfs-site.xml.template_original_install
+
+MYIFACE=`rocks list host interface &hostname; | grep private | cut -d\  -f2`
+
+#in case no interface info at install, use eth0 as default
+if [ "$MYIFACE" == "" ]; then
+MYIFACE=eth0  
+fi
+
+sed -i -e "s#&lt;/configuration&gt;#&lt;property&gt;\n  &lt;name&gt;dfs.secondary.dns.interface&lt;/name&gt;\n  &lt;value&gt;$MYIFACE&lt;/value&gt;\n  &lt;description&gt;\n    The name of the network interface from which the secondary should report its IP address.\n  &lt;/description&gt;\n&lt;/property&gt;\n&lt;/configuration&gt;#" /etc/hadoop/conf/hdfs-site.xml.template
+
+fi
+</file>
+
+ <!-- set configuration hadoop by running created script-->
+/root/HadoopConfigurator
+
+</post>
+
+
+</kickstart >

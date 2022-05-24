@@ -1,0 +1,47 @@
+<?xml version="1.0" standalone="no"?>
+
+<graph>
+
+	<description>
+
+	The hadoop-bigtop Roll implementation of the installation and deployment of the hadoop (bigtop) into the rocks cluster.
+
+	</description>
+
+	<copyright>
+	Copyright (c) 2022  J. E. Ramirez
+	Copyright (c) 2000 - 2017 The Regents of the University of California.
+	All rights reserved. Rocks(r) v6.2/v7.0 www.rocksclusters.org
+	
+	</copyright>
+
+	<changelog>
+	$Log$
+	</changelog>
+
+	<!-- make sure bigtop-hadoop-screen is after main screen partitioning -->
+	<order head="screen-partitioning">
+		<tail>bigtop-hadoop-screen</tail>
+	</order>
+
+	<!-- make sure bigtop-hadoop-configuration is after bigtop-hadoop-install -->
+	<order head="bigtop-hadoop-install">
+		<tail>bigtop-hadoop-configuration</tail>
+	</order>
+
+	<!-- make sure bigtop-hadoop-server is after is after autofs-server -->
+	<order head="autofs-server">
+		<tail>bigtop-hadoop-server</tail>
+	</order>
+
+	<!-- make sure yum conf is set -->
+	<order head="yum">
+		<tail>bigtop-hadoop-install</tail>
+	</order>
+
+	<!-- add edges here -->
+	<edge from="client" to="bigtop-hadoop-install" arch="x86_64" cond="(BIGTOP_HADOOP)"/>
+	<edge from="bigtop-hadoop-install" to="bigtop-hadoop-configuration" arch="x86_64" cond="(BIGTOP_HADOOP)"/>
+	<edge from="server" to="bigtop-hadoop-server" arch="x86_64"/>
+	<edge from="server" to="bigtop-hadoop-screen" arch="x86_64"/>
+</graph>

@@ -1,0 +1,41 @@
+<?xml version="1.0" standalone="no"?>
+<kickstart >
+
+	<description>
+	Install screen for bigtop hadoop defaults NodeName/NodeSecondary
+	</description>
+
+	<copyright>
+	Copyright (c) 2022 J. E. Ramirez
+	</copyright>
+
+	<changelog>
+	$Log: bigtop-hadoop-screen.xml,v $
+	Revision 0.1  2022/05/24 10:40:53  eduardo  Initial Revision
+	</changelog>
+
+<screen>
+	<title>BIGTOP Hadoop Default Configuration</title>
+
+	<variable>
+		<label>BIGTOP Hadoop Name Node</label>
+		<name>BIGTOP_HadoopNameNode</name>
+		<type>string</type>
+		<size>20</size>
+		<default>compute-0-0</default>
+		<value>&BIGTOP_HadoopNameNode;</value>
+		<help>This is the default Hadoop Name Node</help>
+	</variable>
+
+	<variable>
+		<label>BIGTOP Hadoop SecondaryName Node</label>
+		<name>BIGTOP_HadoopSecondaryNameNode</name>
+		<type>string</type>
+		<size>20</size>
+		<default>compute-0-1</default>
+		<value>&BIGTOP_HadoopSecondaryNameNode;</value>
+		<help>This is the default Hadoop Secondary Name Node</help>
+	</variable>
+</screen>
+
+</kickstart >
