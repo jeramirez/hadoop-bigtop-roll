@@ -1,0 +1,81 @@
+<chapter id="installing" xreflabel="Installing">
+
+
+<title>Installing the hadoop-bigtop Roll</title>
+
+<section id="adding-the-roll" xreflabel="Adding the Roll">
+<title>Adding the Roll</title>
+
+<para>
+
+The  &document-rollname; &roll;  can be installed during the Frontend installation step
+of your cluster (see  <xref linkend="on-a-new-server">) or added
+to a running frontend (see <xref linkend="Install-running">).
+
+</para>
+
+</section>
+
+<section id="on-a-new-server" xreflabel="On a New Server">
+<title>On a New Server</title>
+
+<para>
+	
+The &document-rollname; &roll; is added to a Frontend installation in exactly the same
+manner as the required HPC Roll.  Specifically, after the HPC Roll is
+added the installer will once again ask if you have a Roll (see
+below).  Select 'Yes' and insert the &document-rollname; &roll;.
+
+<screenshot>
+	<graphic fileref="images/i-01.png" scale=50></graphic>
+</screenshot>
+
+</para>
+
+<para>
+During the installation process, there will be a screen related to the &document-rollname; roll. As shown below.
+
+</para>
+
+<para>
+To choose the default hadoop primary and secondary servers. 
+<screenshot>
+        <graphic fileref="images/hadoop_screen.png" scale=50></graphic>
+</screenshot>
+
+</para>
+
+<para>
+If not sure what to choose, leave it as is, these default can be changed later any time. 
+</para>
+
+</section>
+
+<section id="Install-running" xreflabel="Install on Running System">
+<title>Install on Running System</title>
+<para>
+The &document-rollname; &roll; can be installed on a running system. The following assumes
+that roll is available in .iso form and is called "&document-rollname;.iso".
+</para>
+<screen>
+$ su - root
+# rocks add roll &document-rollname;.iso
+# rocks enable roll &document-rollname;
+# cd /export/rocks/install
+# rocks create distro
+# rocks run roll hadoop-bigtop | bash
+# rocks add attr BIGTOP_HadoopNameNode value=compute-0-0
+# rocks add attr BIGTOP_HadoopSecondaryNameNode value=compute-0-1
+# rocks add attr BIGTOP_HadoopDataDir value="file:///hadoop"
+# rocks add attr BIGTOP_HadoopData value="file:///hadoop/data"
+# rocks add attr BIGTOP_HadoopCheckPointDirs value="file:///hadoop"
+# rocks add attr BIGTOP_HadoopNamenodeNameDir value="file:///hadoop/dfs/name"
+# rocks add attr BIGTOP_HadoopCheckPointPeriod value=600
+# rocks add attr BIGTOP_HadoopUpdateFstab value=1
+# rocks add attr BIGTOP_HadoopReplicationDefault value=2
+</screen>
+
+</section>
+
+
+</chapter>

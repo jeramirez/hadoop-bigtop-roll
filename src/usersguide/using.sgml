@@ -1,0 +1,119 @@
+<chapter id="using" xreflabel="Using the hadoop-bigtop Roll">
+
+
+<title>Using the hadoop-bigtop Roll</title>
+
+<section id="using-hadoop-bigtop" xreflabel="Using the hadoop-bigtop roll">
+<title>Using the hadoop-bigtop Roll</title>
+
+<para>
+Tutorials for installing hadoop-bigtop and its components are available in 
+<xref linkend="Install-hadoop"> and configuration examples in <xref linkend="config-examples-hadoop">
+</para>
+
+</section>
+
+<section id="Install-hadoop" xreflabel="section 2.2 'Installing and configuring Hadoop'">
+<title>Installing and configuring Hadoop</title>
+<para>
+To install hadoop in a node, first is needed to set rocks attr BIGTOP_HADOOP to true, 
+then run the command shown below (or reinstall).
+</para>
+<para>
+After installation run the rocks command to configure it.
+Below is an example for setting a datanode.
+</para>
+
+<screen>
+$ su - root
+##
+## Set flag to hadoop installation (once)
+##
+#  rocks set host attr compute-0-2 BIGTOP_HADOOP True
+##
+## Run rocks commands to install and configure hadoop
+##
+#  rocks sync host bigtop hadoop install compute-0-2
+#  rocks sync host bigtop hadoop config compute-0-2
+##
+## Set services on boot
+##
+#  rocks run host compute-0-2 command='systemctl enable hadoop-hdfs-datanode'
+##
+## Start hadoop service
+##
+#  rocks run host compute-0-2 command='systemctl start hadoop-hdfs-datanode'
+
+</screen>
+<para>
+Example of installation by forcing node reinstall
+</para>
+<screen>
+$ su - root
+##
+## Set flags to hadoop installation (not needed if already set)
+##
+#  rocks set host attr compute-0-2 BIGTOP_HADOOP True
+#  rocks set host attr compute-0-2 BIGTOP_Hadoop_StartDaemonDataNode True
+##
+## Reinstall 
+##
+#  rocks set host boot compute-0-2 action=install
+#  ssh compute-0-2 "shutdown -r now"
+</screen>
+
+</section>
+
+<!-- ***************************************************************** -->
+<section id="config-examples-hadoop" xreflabel="section 2.3 'Hadoop Configuration Examples'">
+<title>Hadoop Configuration Examples</title>
+<para>
+The following are short examples of how to customize Hadoop using 
+Rocks commands.
+
+<itemizedlist>
+<listitem>
+<para>
+Change default Hadoop Node Name on all compute Appliances:
+<screen>
+rocks set appliance attr compute BIGTOP_HadoopNameNode value=hadoop-0-0 
+rocks sync host bigtop hadoop config compute
+</screen>
+</para>
+</listitem>
+</itemizedlist>
+
+<itemizedlist>
+<listitem>
+<para>
+Change default Hadoop Secondary Name on all compute Appliances:
+<screen>
+rocks set appliance attr compute BIGTOP_HadoopSecondaryNameNode value=hadoop-0-1
+rocks sync host bigtop hadoop config compute  
+</screen>
+</para>
+</listitem>
+
+<listitem>
+<para>
+Change default Hadoop Data Dir on all compute Appliances, for example two data disks on compute nodes:
+<screen>
+rocks set appliance attr compute BIGTOP_HadoopData 
+        value="file:///hadoop/data,file:///hadoop2/data"
+rocks sync host bigtop hadoop config compute
+</screen>
+</para>
+</listitem>
+</itemizedlist>
+
+
+</para>
+
+</section>
+
+
+
+<!-- *****************************  hadoop attributes  **************************************** -->
+&customizing_hadoop;
+
+</chapter>

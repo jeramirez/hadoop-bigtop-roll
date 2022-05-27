@@ -1,0 +1,49 @@
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
+	<!ENTITY preface    SYSTEM "preface.sgml">
+	<!ENTITY installing SYSTEM "installing.sgml">
+	<!ENTITY using SYSTEM "using.sgml">
+	<!ENTITY copyrights SYSTEM "copyrights.sgml">
+	<!ENTITY % entities SYSTEM "entities.sgml">
+	<!ENTITY customizing_hadoop SYSTEM "customizing_hadoop.sgml">
+	<!ENTITY roll-hadoop-bigtop "<command>bigtop</command>">
+	<!ENTITY roll-hadoop-bigtop-depend "">
+	<!ENTITY apachev2-copyright SYSTEM "roll-apachev2-copyright.sgml">
+	%entities;
+]>
+
+<book>
+<bookinfo>
+
+	<title> hadoop-bigtop Roll: Users Guide </title>
+
+	<subtitle>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata fileref="">
+			</imageobject>
+		</inlinemediaobject>
+	</subtitle>
+
+	<edition>&document-version;</edition>
+
+	<pubdate>&document-pubdate;</pubdate>
+
+	<copyright id="copyright" xreflabel="copyright">
+		<year>&document-year;</year>
+		<holder>The copyright holder Juan Eduardo Ramirez, and UC Regents</holder>
+	</copyright>
+
+	<releaseinfo>
+		<ulink url="roll-hadoop-bigtop-usersguide.pdf">(PDF version)</ulink>
+	</releaseinfo>
+
+</bookinfo>
+
+&preface;
+&installing;
+&using;
+&source-roll-commands;
+&copyrights;
+
+</book>
+
