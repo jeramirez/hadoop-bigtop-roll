@@ -25,11 +25,13 @@
 ###  Set Default Hadoop Configuration
 BigtophadoopNN="compute-0-0"
 BigtophadoopSN="compute-0-1"
-BigtophadoopDataDir="/hadoop"
-BigtophadoopData="/hadoop/data"
-BigtophadoopChkDirs="/home/hadoop,/scratch/hadoop"
+BigtophadoopDataDir="file:///hadoop"
+BigtophadoopData="file:///hadoop/data"
+BigtophadoopChkDirs="file:///hadoop"
+BigtophadoopNameDir="file:///hadoop/dfs/name"
 BigtophdfsChkPeriod="600"
 BigtophdfsUpdatetFstab="1"
+BigtophadoopReplication="2"
 
 
 #if roll was installed at kickstart BIGTOP_HadoopNameNode should exist 
@@ -44,7 +46,8 @@ fi
 /opt/rocks/bin/rocks add attr BIGTOP_HadoopData value=$BigtophadoopData
 /opt/rocks/bin/rocks add attr BIGTOP_HadoopCheckPointDirs value=$BigtophadoopChkDirs
 /opt/rocks/bin/rocks add attr BIGTOP_HadoopCheckPointPeriod value=$BigtophdfsChkPeriod
+/opt/rocks/bin/rocks add attr BIGTOP_HadoopNamenodeNameDir value=$BigtophadoopNameDir
 /opt/rocks/bin/rocks add attr BIGTOP_HadoopUpdateFstab value=$BigtophdfsUpdatetFstab
-
+/opt/rocks/bin/rocks add attr BIGTOP_HadoopReplicationDefault value=$BigtophadoopReplication
 
 </kickstart>

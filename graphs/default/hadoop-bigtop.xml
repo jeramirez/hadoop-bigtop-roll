@@ -19,29 +19,29 @@
 	$Log$
 	</changelog>
 
-	<!-- make sure bigtop-hadoop-screen is after main screen partitioning -->
+	<!-- make sure hadoop-bigtop-screen is after main screen partitioning -->
 	<order head="screen-partitioning">
-		<tail>bigtop-hadoop-screen</tail>
+		<tail>hadoop-bigtop-screen</tail>
 	</order>
 
-	<!-- make sure bigtop-hadoop-configuration is after bigtop-hadoop-install -->
-	<order head="bigtop-hadoop-install">
-		<tail>bigtop-hadoop-configuration</tail>
+	<!-- make sure hadoop-bigtop-configuration is after hadoop-bigtop-install -->
+	<order head="hadoop-bigtop-install">
+		<tail>hadoop-bigtop-configuration</tail>
 	</order>
 
-	<!-- make sure bigtop-hadoop-server is after is after autofs-server -->
+	<!-- make sure hadoop-bigtop-server is after is after autofs-server -->
 	<order head="autofs-server">
-		<tail>bigtop-hadoop-server</tail>
+		<tail>hadoop-bigtop-server</tail>
 	</order>
 
 	<!-- make sure yum conf is set -->
 	<order head="yum">
-		<tail>bigtop-hadoop-install</tail>
+		<tail>hadoop-bigtop-install</tail>
 	</order>
 
 	<!-- add edges here -->
-	<edge from="client" to="bigtop-hadoop-install" arch="x86_64" cond="(BIGTOP_HADOOP)"/>
-	<edge from="bigtop-hadoop-install" to="bigtop-hadoop-configuration" arch="x86_64" cond="(BIGTOP_HADOOP)"/>
-	<edge from="server" to="bigtop-hadoop-server" arch="x86_64"/>
-	<edge from="server" to="bigtop-hadoop-screen" arch="x86_64"/>
+	<edge from="client" to="hadoop-bigtop-install" arch="x86_64" cond="(BIGTOP_HADOOP)"/>
+	<edge from="hadoop-bigtop-install" to="hadoop-bigtop-configuration" arch="x86_64" cond="(BIGTOP_HADOOP)"/>
+	<edge from="server" to="hadoop-bigtop-server" arch="x86_64"/>
+	<edge from="server" to="hadoop-bigtop-screen" arch="x86_64"/>
 </graph>
