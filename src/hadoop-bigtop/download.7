@@ -1,0 +1,27 @@
+#/bin/bash 
+
+#create dirs if not exist
+[ -d 7/x86_64 ] || mkdir -p 7/x86_64
+[ -d 7/noarch ] || mkdir -p 7/noarch
+[ -d 7/debug ] || mkdir -p 7/debug
+#
+#x86_64
+#------
+yumdownloader --config=../../bigtop.repo --enablerepo=bigtop --destdir=7/x86_64/ hadoop
+yumdownloader --config=../../bigtop.repo --enablerepo=bigtop --destdir=7/x86_64/ hadoop-client
+yumdownloader --config=../../bigtop.repo --enablerepo=bigtop --destdir=7/x86_64/ hadoop-conf-pseudo
+yumdownloader --config=../../bigtop.repo --enablerepo=bigtop --destdir=7/x86_64/ hadoop-hdfs-datanode
+yumdownloader --config=../../bigtop.repo --enablerepo=bigtop --destdir=7/x86_64/ hadoop-hdfs-namenode
+yumdownloader --config=../../bigtop.repo --enablerepo=bigtop --destdir=7/x86_64/ hadoop-hdfs-secondarynamenode
+yumdownloader --config=../../bigtop.repo --enablerepo=bigtop --destdir=7/x86_64/ hadoop-hdfs
+yumdownloader --config=../../bigtop.repo --enablerepo=bigtop --destdir=7/x86_64/ hadoop-hdfs-fuse
+yumdownloader --config=../../bigtop.repo --enablerepo=bigtop --destdir=7/x86_64/ hadoop-libhdfs
+yumdownloader --config=../../bigtop.repo --enablerepo=bigtop --destdir=7/x86_64/ hadoop-mapreduce
+yumdownloader --config=../../bigtop.repo --enablerepo=bigtop --destdir=7/x86_64/ hadoop-yarn
+yumdownloader --config=../../bigtop.repo --enablerepo=bigtop --destdir=7/x86_64/ zookeeper
+yumdownloader --config=../../bigtop.repo --enablerepo=bigtop --destdir=7/x86_64/ bigtop-jsvc
+#
+#noarch
+#------
+yumdownloader --config=../../bigtop.repo --enablerepo=bigtop --destdir=7/noarch/ bigtop-utils
+yumdownloader --config=../../bigtop.repo --enablerepo=bigtop --destdir=7/noarch/ bigtop-groovy
