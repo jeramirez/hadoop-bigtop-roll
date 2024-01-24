@@ -1,5 +1,5 @@
 ROLL			= hadoop-bigtop
-VERSION			= 1.5.0
+VERSION			= 3.2.1
 NAME    		= roll-$(ROLL)-usersguide
 RELEASE			= 0
 
