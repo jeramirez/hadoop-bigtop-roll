@@ -7,7 +7,7 @@ Download and Compile Roll
 ```shell
 git clone https://github.com/jeramirez/hadoop-bigtop-roll.git
 cd hadoop-bigtop-roll
-wget https://archive.apache.org/dist/bigtop/bigtop-1.5.0/repos/centos-7/bigtop.repo
+wget https://dlcdn.apache.org/bigtop/bigtop-3.2.1/repos/centos-7/bigtop.repo
 make roll
 ```
 
@@ -21,7 +21,7 @@ make roll
 Install Roll on a Running System
 --------------------------------
 ```shell
-rocks add roll hadoop-bigtop-1.5.0-0.x86_64.disk1.iso
+rocks add roll hadoop-bigtop-3.2.1-0.x86_64.disk1.iso
 rocks enable roll hadoop-bigtop
 cd /export/rocks/install
 rocks create distro
